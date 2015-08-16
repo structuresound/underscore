@@ -78,7 +78,7 @@ test_each() {
         Tracer t("C-style array");
         int data[]   { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
         int expect[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-        _::each(data, [](int& v) {
+        underscore::each(data, [](int& v) {
             ++v;
         });
         for (int i = 0; i != 10; ++i) {
@@ -90,7 +90,7 @@ test_each() {
         Tracer t("array");
         array<int, 10> data   = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
         array<int, 10> expect = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-        _::each(data, [](int& v) {
+        underscore::each(data, [](int& v) {
             ++v;
         });
         assert(data == expect);
@@ -100,7 +100,7 @@ test_each() {
         Tracer t("string");
         string data("hello world!");
         string expect("HELLO WORLD!");
-        _::each(data, [](char& v) {
+        underscore::each(data, [](char& v) {
             if (v >= 'a' && v <= 'z') {
                 v -= 32;
             }
@@ -112,7 +112,7 @@ test_each() {
         Tracer t("vector");
         vector<int> data   { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
         vector<int> expect { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-        _::each(data, [](int& v) {
+        underscore::each(data, [](int& v) {
             ++v;
         });
         assert(data == expect);
@@ -122,7 +122,7 @@ test_each() {
         Tracer t("deque");
         deque<int> data   { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
         deque<int> expect { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-        _::each(data, [](int& v) {
+        underscore::each(data, [](int& v) {
             ++v;
         });
         assert(data == expect);
@@ -132,7 +132,7 @@ test_each() {
         Tracer t("list");
         list<int> data   { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
         list<int> expect { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-        _::each(data, [](int& v) {
+        underscore::each(data, [](int& v) {
             ++v;
         });
         assert(data == expect);
@@ -142,7 +142,7 @@ test_each() {
         Tracer t("forward_list");
         forward_list<int> data   { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
         forward_list<int> expect { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-        _::each(data, [](int& v) {
+        underscore::each(data, [](int& v) {
             ++v;
         });
         assert(data == expect);
@@ -153,7 +153,7 @@ test_each() {
         set<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
         vector<int> result;
         vector<int> expect { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-        _::each(data, [&](int v) {
+        underscore::each(data, [&](int v) {
             result.push_back(++v);
         });
         assert(result == expect);
@@ -164,7 +164,7 @@ test_each() {
         multiset<int> data { 0, 0, 2, 2, 4, 4, 6, 6, 8, 8 };
         vector<int> result;
         vector<int> expect { 1, 1, 3, 3, 5, 5, 7, 7, 9, 9 };
-        _::each(data, [&](int v) {
+        underscore::each(data, [&](int v) {
             result.push_back(++v);
         });
         assert(result == expect);
@@ -175,7 +175,7 @@ test_each() {
         unordered_set<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
         vector<int> result;
         vector<int> expect { 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 };
-        _::each(data, [&](int v) {
+        underscore::each(data, [&](int v) {
             result.push_back(++v);
         });
         assert(result == expect);
@@ -186,7 +186,7 @@ test_each() {
         unordered_multiset<int> data { 0, 0, 2, 2, 4, 4, 6, 6, 8, 8 };
         vector<int> result;
         vector<int> expect { 9, 9, 7, 7, 5, 5, 3, 3, 1, 1 };
-        _::each(data, [&](int v) {
+        underscore::each(data, [&](int v) {
             result.push_back(++v);
         });
         assert(result == expect);
@@ -196,7 +196,7 @@ test_each() {
         Tracer t("map");
         map<int, string> data   { {1, "a"}, {2, "b"}, {3, "c"}, {4, "d"}, {10, "x"}, {20, "y"}, {30, "z"} };
         map<int, string> expect { {1, "aa"}, {2, "bb"}, {3, "cc"}, {4, "dd"}, {10, "xx"}, {20, "yy"}, {30, "zz"} };
-        _::each(data, [](pair<const int, string>& v) {
+        underscore::each(data, [](pair<const int, string>& v) {
             v.second += v.second;
         });
         assert(data == expect);
@@ -206,7 +206,7 @@ test_each() {
         Tracer t("multimap");
         multimap<int, string> data   { {2, "a"}, {2, "b"}, {4, "c"}, {4, "d"}, {10, "x"}, {10, "y"} };
         multimap<int, string> expect { {2, "aa"}, {2, "bb"}, {4, "cc"}, {4, "dd"}, {10, "xx"}, {10, "yy"} };
-        _::each(data, [](pair<const int, string>& v) {
+        underscore::each(data, [](pair<const int, string>& v) {
             v.second += v.second;
         });
         assert(data == expect);
@@ -216,7 +216,7 @@ test_each() {
         Tracer t("unordered_map");
         unordered_map<int, string> data   { {1, "a"}, {2, "b"}, {3, "c"}, {4, "d"}, {10, "x"}, {20, "y"}, {30, "z"} };
         unordered_map<int, string> expect { {1, "aa"}, {2, "bb"}, {3, "cc"}, {4, "dd"}, {10, "xx"}, {20, "yy"}, {30, "zz"} };
-        _::each(data, [](pair<const int, string>& v) {
+        underscore::each(data, [](pair<const int, string>& v) {
             v.second += v.second;
         });
         assert(data == expect);
@@ -226,7 +226,7 @@ test_each() {
         Tracer t("unordered_multimap");
         unordered_multimap<int, string> data   { {2, "a"}, {2, "b"}, {4, "c"}, {4, "d"}, {10, "x"}, {10, "y"} };
         unordered_multimap<int, string> expect { {2, "aa"}, {2, "bb"}, {4, "cc"}, {4, "dd"}, {10, "xx"}, {10, "yy"} };
-        _::each(data, [](pair<const int, string>& v) {
+        underscore::each(data, [](pair<const int, string>& v) {
             v.second += v.second;
         });
         assert(data == expect);
@@ -241,7 +241,7 @@ test_map() {
         Tracer t("C-style array");
         int data[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
         vector<string> expect { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
-        vector<string> result = _::map(data, [](int v) {
+        vector<string> result = underscore::map(data, [](int v) {
             return itoa(v);
         });
         assert(result == expect);
@@ -251,7 +251,7 @@ test_map() {
         Tracer t("array");
         array<int, 10> data = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
         vector<string> expect { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
-        vector<string> result = _::map(data, [](int v) {
+        vector<string> result = underscore::map(data, [](int v) {
             return itoa(v);
         });
         assert(result == expect);
@@ -261,7 +261,7 @@ test_map() {
         Tracer t("string");
         string data("hello world!");
         string expect("HELLO WORLD!");
-        string result = _::map<basic_string>(data, [](char v) {
+        string result = underscore::map<basic_string>(data, [](char v) {
             return v >= 'a' && v <= 'z' ? static_cast<char>(v - 32) : v;
         });
         assert(result == expect);
@@ -271,7 +271,7 @@ test_map() {
         Tracer t("vector");
         vector<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
         vector<string> expect { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
-        vector<string> result = _::map(data, [](int v) {
+        vector<string> result = underscore::map(data, [](int v) {
             return itoa(v);
         });
         assert(result == expect);
@@ -281,7 +281,7 @@ test_map() {
         Tracer t("deque");
         deque<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
         deque<string> expect { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
-        deque<string> result = _::map<deque>(data, [](int v) {
+        deque<string> result = underscore::map<deque>(data, [](int v) {
             return itoa(v);
         });
         assert(result == expect);
@@ -291,7 +291,7 @@ test_map() {
         Tracer t("list");
         list<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
         list<string> expect { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
-        list<string> result = _::map<list>(data, [](int v) {
+        list<string> result = underscore::map<list>(data, [](int v) {
             return itoa(v);
         });
         assert(result == expect);
@@ -301,7 +301,7 @@ test_map() {
         Tracer t("forward_list");
         forward_list<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
         forward_list<string> expect { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
-        forward_list<string> result = _::map<forward_list>(data, [](int v) {
+        forward_list<string> result = underscore::map<forward_list>(data, [](int v) {
             return itoa(v);
         });
         assert(result == expect);
@@ -311,7 +311,7 @@ test_map() {
         Tracer t("set");
         set<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
         set<string> expect { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
-        set<string> result = _::map<set>(data, [](int v) {
+        set<string> result = underscore::map<set>(data, [](int v) {
             return itoa(v);
         });
         assert(result == expect);
@@ -321,7 +321,7 @@ test_map() {
         Tracer t("multiset");
         multiset<int> data { 0, 0, 2, 2, 4, 4, 6, 6, 8, 8 };
         multiset<string> expect { "0", "0", "2", "2", "4", "4", "6", "6", "8", "8" };
-        multiset<string> result = _::map<multiset>(data, [](int v) {
+        multiset<string> result = underscore::map<multiset>(data, [](int v) {
             return itoa(v);
         });
         assert(result == expect);
@@ -331,7 +331,7 @@ test_map() {
         Tracer t("unordered_set");
         unordered_set<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
         unordered_set<string> expect { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
-        unordered_set<string> result = _::map<unordered_set>(data, [](int v) {
+        unordered_set<string> result = underscore::map<unordered_set>(data, [](int v) {
             return itoa(v);
         });
         assert(result == expect);
@@ -341,7 +341,7 @@ test_map() {
         Tracer t("unordered_multiset");
         unordered_multiset<int> data { 0, 0, 2, 2, 4, 4, 6, 6, 8, 8 };
         unordered_multiset<string> expect { "0", "0", "2", "2", "4", "4", "6", "6", "8", "8" };
-        unordered_multiset<string> result = _::map<unordered_multiset>(data, [](int v) {
+        unordered_multiset<string> result = underscore::map<unordered_multiset>(data, [](int v) {
             return itoa(v);
         });
         assert(result == expect);
@@ -351,7 +351,7 @@ test_map() {
         Tracer t("map");
         map<int, string> data { {1, "a"}, {2, "b"}, {3, "c"}, {4, "d"}, {10, "x"}, {20, "y"}, {30, "z"} };
         vector<string> expect { "a", "b", "c", "d", "x", "y", "z" };
-        vector<string> result = _::map(data, [](const pair<const int, string>& v) {
+        vector<string> result = underscore::map(data, [](const pair<const int, string>& v) {
             return v.second;
         });
         assert(result == expect);
@@ -361,7 +361,7 @@ test_map() {
         Tracer t("multimap");
         multimap<int, string> data { {2, "a"}, {2, "b"}, {4, "c"}, {4, "d"}, {10, "x"}, {10, "y"} };
         vector<string> expect { "a", "b", "c", "d", "x", "y"};
-        vector<string> result = _::map(data, [](const pair<const int, string>& v) {
+        vector<string> result = underscore::map(data, [](const pair<const int, string>& v) {
             return v.second;
         });
         assert(result == expect);
@@ -371,7 +371,7 @@ test_map() {
         Tracer t("unordered_map");
         unordered_map<int, string> data { {1, "a"}, {2, "b"}, {3, "c"}, {4, "d"}, {10, "x"}, {20, "y"}, {30, "z"} };
         list<string> expect { "z", "y", "x", "d", "c", "b", "a" };
-        list<string> result = _::map<list>(data, [](const pair<const int, string>& v) {
+        list<string> result = underscore::map<list>(data, [](const pair<const int, string>& v) {
             return v.second;
         });
         assert(result == expect);
@@ -381,7 +381,7 @@ test_map() {
         Tracer t("unordered_multimap");
         unordered_multimap<int, string> data { {2, "a"}, {2, "b"}, {4, "c"}, {4, "d"}, {10, "x"}, {10, "y"} };
         list<string> expect { "x", "y", "c", "d", "a", "b" };
-        list<string> result = _::map<list>(data, [](const pair<const int, string>& v) {
+        list<string> result = underscore::map<list>(data, [](const pair<const int, string>& v) {
             return v.second;
         });
         assert(result == expect);
@@ -395,7 +395,7 @@ test_reduce() {
     {
         Tracer t("C-style array");
         int data[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        int result = _::reduce(data, [](int memo, int v) {
+        int result = underscore::reduce(data, [](int memo, int v) {
             return memo + v;
         }, 100.0);
         assert(result == 145);
@@ -404,7 +404,7 @@ test_reduce() {
     {
         Tracer t("array");
         array<int, 10> data = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        int result = _::reduce(data, [](int memo, int v) {
+        int result = underscore::reduce(data, [](int memo, int v) {
             return memo + v;
         }, 100);
         assert(result == 145);
@@ -414,7 +414,7 @@ test_reduce() {
         Tracer t("string");
         string data("hello world!");
         string expect("HELLO WORLD!");
-        string result = _::reduce(data, [](string memo, char v) {
+        string result = underscore::reduce(data, [](string memo, char v) {
             return memo + string(1, v >= 'a' && v <= 'z' ? v - 32 : v);
         }, string());
         assert(result == expect);
@@ -424,7 +424,7 @@ test_reduce() {
         Tracer t("vector");
         vector<string> data { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
         string expect = "0123456789";
-        string result = _::reduce(data, [](string memo, const string& v) {
+        string result = underscore::reduce(data, [](string memo, const string& v) {
             return memo + v;
         }, string());
         assert(result == expect);
@@ -434,7 +434,7 @@ test_reduce() {
         Tracer t("deque");
         deque<string> data { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
         string expect = "0123456789";
-        string result = _::reduce(data, [](string memo, const string& v) {
+        string result = underscore::reduce(data, [](string memo, const string& v) {
             return memo + v;
         }, string());
         assert(result == expect);
@@ -444,7 +444,7 @@ test_reduce() {
         Tracer t("list");
         list<string> data { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
         string expect = "0123456789";
-        string result = _::reduce(data, [](string memo, const string& v) {
+        string result = underscore::reduce(data, [](string memo, const string& v) {
             return memo + v;
         }, string());
         assert(result == expect);
@@ -454,7 +454,7 @@ test_reduce() {
         Tracer t("forward_list");
         forward_list<string> data { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
         string expect = "0123456789";
-        string result = _::reduce(data, [](string memo, const string& v) {
+        string result = underscore::reduce(data, [](string memo, const string& v) {
             return memo + v;
         }, string());
         assert(result == expect);
@@ -464,7 +464,7 @@ test_reduce() {
         Tracer t("set");
         set<string> data { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
         string expect = "0123456789";
-        string result = _::reduce(data, [](string memo, const string& v) {
+        string result = underscore::reduce(data, [](string memo, const string& v) {
             return memo + v;
         }, string());
         assert(result == expect);
@@ -474,7 +474,7 @@ test_reduce() {
         Tracer t("multiset");
         multiset<string> data { "0", "0", "2", "2", "4", "4", "6", "6", "8", "8" };
         string expect = "0022446688";
-        string result = _::reduce(data, [](string memo, const string& v) {
+        string result = underscore::reduce(data, [](string memo, const string& v) {
             return memo + v;
         }, string());
         assert(result == expect);
@@ -483,7 +483,7 @@ test_reduce() {
     {
         Tracer t("unordered_set");
         unordered_set<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        int result = _::reduce(data, [](int memo, int v) {
+        int result = underscore::reduce(data, [](int memo, int v) {
             return memo + v;
         }, 100);
         assert(result == 145);
@@ -492,7 +492,7 @@ test_reduce() {
     {
         Tracer t("unordered_multiset");
         unordered_multiset<int> data { 0, 0, 2, 2, 4, 4, 6, 6, 8, 8 };
-        int result = _::reduce(data, [](int memo, int v) {
+        int result = underscore::reduce(data, [](int memo, int v) {
             return memo + v;
         }, 100);
         assert(result == 140);
@@ -502,7 +502,7 @@ test_reduce() {
         Tracer t("map");
         map<int, string> data { {1, "a"}, {2, "b"}, {3, "c"}, {4, "d"}, {10, "x"}, {20, "y"}, {30, "z"} };
         string expect = "abcdxyz";
-        string result = _::reduce(data, [](string memo, const pair<const int, string>& v) {
+        string result = underscore::reduce(data, [](string memo, const pair<const int, string>& v) {
             return memo + v.second;
         }, string());
         assert(result == expect);
@@ -512,7 +512,7 @@ test_reduce() {
         Tracer t("multimap");
         multimap<int, string> data { {2, "a"}, {2, "b"}, {4, "c"}, {4, "d"}, {10, "x"}, {10, "y"} };
         string expect = "abcdxy";
-        string result = _::reduce(data, [](string memo, const pair<const int, string>& v) {
+        string result = underscore::reduce(data, [](string memo, const pair<const int, string>& v) {
             return memo + v.second;
         }, string());
         assert(result == expect);
@@ -521,7 +521,7 @@ test_reduce() {
     {
         Tracer t("unordered_map");
         unordered_map<int, string> data { {1, "a"}, {2, "b"}, {3, "c"}, {4, "d"}, {10, "x"}, {20, "y"}, {30, "z"} };
-        int result = _::reduce(data, [](int memo, const pair<const int, string>& v) {
+        int result = underscore::reduce(data, [](int memo, const pair<const int, string>& v) {
             return memo + v.first;
         }, 0);
         assert(result == 70);
@@ -530,7 +530,7 @@ test_reduce() {
     {
         Tracer t("unordered_multimap");
         unordered_multimap<int, string> data { {2, "a"}, {2, "b"}, {4, "c"}, {4, "d"}, {10, "x"}, {10, "y"} };
-        int result = _::reduce(data, [](int memo, const pair<const int, string>& v) {
+        int result = underscore::reduce(data, [](int memo, const pair<const int, string>& v) {
             return memo + v.first;
         }, 0);
         assert(result == 32);
@@ -544,7 +544,7 @@ test_reduceRight() {
     {
         Tracer t("C-style array");
         int data[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        int result = _::reduceRight(data, [](int memo, int v) {
+        int result = underscore::reduceRight(data, [](int memo, int v) {
             return memo + v;
         }, 100.0);
         assert(result == 145);
@@ -553,7 +553,7 @@ test_reduceRight() {
     {
         Tracer t("array");
         array<int, 10> data = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        int result = _::reduceRight(data, [](int memo, int v) {
+        int result = underscore::reduceRight(data, [](int memo, int v) {
             return memo + v;
         }, 100);
         assert(result == 145);
@@ -563,7 +563,7 @@ test_reduceRight() {
         Tracer t("string");
         string data("hello world!");
         string expect("!DLROW OLLEH");
-        string result = _::reduceRight(data, [](string memo, char v) {
+        string result = underscore::reduceRight(data, [](string memo, char v) {
             return memo + string(1, v >= 'a' && v <= 'z' ? v - 32 : v);
         }, string());
         assert(result == expect);
@@ -573,7 +573,7 @@ test_reduceRight() {
         Tracer t("vector");
         vector<string> data { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
         string expect = "9876543210";
-        string result = _::reduceRight(data, [](string memo, const string& v) {
+        string result = underscore::reduceRight(data, [](string memo, const string& v) {
             return memo + v;
         }, string());
         assert(result == expect);
@@ -583,7 +583,7 @@ test_reduceRight() {
         Tracer t("deque");
         deque<string> data { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
         string expect = "9876543210";
-        string result = _::reduceRight(data, [](string memo, const string& v) {
+        string result = underscore::reduceRight(data, [](string memo, const string& v) {
             return memo + v;
         }, string());
         assert(result == expect);
@@ -593,7 +593,7 @@ test_reduceRight() {
         Tracer t("list");
         list<string> data { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
         string expect = "9876543210";
-        string result = _::reduceRight(data, [](string memo, const string& v) {
+        string result = underscore::reduceRight(data, [](string memo, const string& v) {
             return memo + v;
         }, string());
         assert(result == expect);
@@ -607,7 +607,7 @@ test_reduceRight() {
         Tracer t("set");
         set<string> data { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
         string expect = "9876543210";
-        string result = _::reduceRight(data, [](string memo, const string& v) {
+        string result = underscore::reduceRight(data, [](string memo, const string& v) {
             return memo + v;
         }, string());
         assert(result == expect);
@@ -617,7 +617,7 @@ test_reduceRight() {
         Tracer t("multiset");
         multiset<string> data { "0", "0", "2", "2", "4", "4", "6", "6", "8", "8" };
         string expect = "8866442200";
-        string result = _::reduceRight(data, [](string memo, const string& v) {
+        string result = underscore::reduceRight(data, [](string memo, const string& v) {
             return memo + v;
         }, string());
         assert(result == expect);
@@ -635,7 +635,7 @@ test_reduceRight() {
         Tracer t("map");
         map<int, string> data { {1, "a"}, {2, "b"}, {3, "c"}, {4, "d"}, {10, "x"}, {20, "y"}, {30, "z"} };
         string expect = "zyxdcba";
-        string result = _::reduceRight(data, [](string memo, const pair<const int, string>& v) {
+        string result = underscore::reduceRight(data, [](string memo, const pair<const int, string>& v) {
             return memo + v.second;
         }, string());
         assert(result == expect);
@@ -645,7 +645,7 @@ test_reduceRight() {
         Tracer t("multimap");
         multimap<int, string> data { {2, "a"}, {2, "b"}, {4, "c"}, {4, "d"}, {10, "x"}, {10, "y"} };
         string expect = "yxdcba";
-        string result = _::reduceRight(data, [](string memo, const pair<const int, string>& v) {
+        string result = underscore::reduceRight(data, [](string memo, const pair<const int, string>& v) {
             return memo + v.second;
         }, string());
         assert(result == expect);
@@ -667,12 +667,12 @@ test_find() {
     {
         Tracer t("C-style array");
         int data[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        int* result = _::find(data, [](int v) {
+        int* result = underscore::find(data, [](int v) {
             return v % 2 == 0;
         });
         assert(*result == 2);
 
-        result = _::find(data, [](int v) {
+        result = underscore::find(data, [](int v) {
             return v > 9;
         });
         assert(result == end(data));
@@ -681,7 +681,7 @@ test_find() {
     {
         Tracer t("array");
         array<int, 10> data = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::find(data, [](int v) {
+        auto result = underscore::find(data, [](int v) {
             return v > 5;
         });
         assert(*result == 6);
@@ -690,7 +690,7 @@ test_find() {
     {
         Tracer t("string");
         string data("hello world!");
-        auto result = _::find(data, [](char v) {
+        auto result = underscore::find(data, [](char v) {
             return v == 'w';
         });
         assert(*result == 'w');
@@ -699,7 +699,7 @@ test_find() {
     {
         Tracer t("vector");
         vector<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::find(data, [](int v) {
+        auto result = underscore::find(data, [](int v) {
             return v > 5;
         });
         assert(*result == 6);
@@ -708,7 +708,7 @@ test_find() {
     {
         Tracer t("deque");
         deque<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::find(data, [](int v) {
+        auto result = underscore::find(data, [](int v) {
             return v > 5;
         });
         assert(*result == 6);
@@ -717,7 +717,7 @@ test_find() {
     {
         Tracer t("list");
         list<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::find(data, [](int v) {
+        auto result = underscore::find(data, [](int v) {
             return v > 5;
         });
         assert(*result == 6);
@@ -726,7 +726,7 @@ test_find() {
     {
         Tracer t("forward_list");
         forward_list<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::find(data, [](int v) {
+        auto result = underscore::find(data, [](int v) {
             return v > 5;
         });
         assert(*result == 6);
@@ -735,7 +735,7 @@ test_find() {
     {
         Tracer t("set");
         set<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::find(data, [](int v) {
+        auto result = underscore::find(data, [](int v) {
             return v > 5;
         });
         assert(*result == 6);
@@ -744,7 +744,7 @@ test_find() {
     {
         Tracer t("multiset");
         multiset<int> data { 0, 0, 2, 2, 4, 4, 6, 6, 8, 8 };
-        auto result = _::find(data, [](int v) {
+        auto result = underscore::find(data, [](int v) {
             return v > 5;
         });
         assert(*result == 6);
@@ -753,7 +753,7 @@ test_find() {
     {
         Tracer t("unordered_set");
         unordered_set<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::find(data, [](int v) {
+        auto result = underscore::find(data, [](int v) {
             return v == 5;
         });
         assert(*result == 5);
@@ -762,7 +762,7 @@ test_find() {
     {
         Tracer t("unordered_multiset");
         unordered_multiset<int> data { 0, 0, 2, 2, 4, 4, 6, 6, 8, 8 };
-        auto result = _::find(data, [](int v) {
+        auto result = underscore::find(data, [](int v) {
             return v == 2;
         });
         assert(*result == 2);
@@ -771,7 +771,7 @@ test_find() {
     {
         Tracer t("map");
         map<int, string> data { {1, "a"}, {2, "b"}, {3, "c"}, {4, "d"}, {10, "x"}, {20, "y"}, {30, "z"} };
-        auto result = _::find(data, [](const pair<const int, string>& v) {
+        auto result = underscore::find(data, [](const pair<const int, string>& v) {
             return v.second == "x";
         });
         assert(result->first == 10);
@@ -780,7 +780,7 @@ test_find() {
     {
         Tracer t("multimap");
         multimap<int, string> data { {2, "a"}, {2, "b"}, {4, "c"}, {4, "d"}, {10, "x"}, {10, "y"} };
-        auto result = _::find(data, [](const pair<const int, string>& v) {
+        auto result = underscore::find(data, [](const pair<const int, string>& v) {
             return v.second == "x";
         });
         assert(result->first == 10);
@@ -789,7 +789,7 @@ test_find() {
     {
         Tracer t("unordered_map");
         unordered_map<int, string> data { {1, "a"}, {2, "b"}, {3, "c"}, {4, "d"}, {10, "x"}, {20, "y"}, {30, "z"} };
-        auto result = _::find(data, [](const pair<const int, string>& v) {
+        auto result = underscore::find(data, [](const pair<const int, string>& v) {
             return v.second == "x";
         });
         assert(result->first == 10);
@@ -798,7 +798,7 @@ test_find() {
     {
         Tracer t("unordered_multimap");
         unordered_multimap<int, string> data { {2, "a"}, {2, "b"}, {4, "c"}, {4, "d"}, {10, "x"}, {10, "y"} };
-        auto result = _::find(data, [](const pair<const int, string>& v) {
+        auto result = underscore::find(data, [](const pair<const int, string>& v) {
             return v.second == "x";
         });
         assert(result->first == 10);
@@ -821,7 +821,7 @@ test_filter() {
         Tracer t("string");
         string data("hello world!");
         string expect("lloworl");
-        string result = _::filter(data, [](char v) {
+        string result = underscore::filter(data, [](char v) {
             return v > 'h';
         });
         assert(result == expect);
@@ -831,7 +831,7 @@ test_filter() {
         Tracer t("vector");
         vector<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
         vector<int> expect { 6, 7, 8, 9 };
-        vector<int> result = _::filter(data, [](int v) {
+        vector<int> result = underscore::filter(data, [](int v) {
             return v > 5;
         });
         assert(result == expect);
@@ -841,7 +841,7 @@ test_filter() {
         Tracer t("deque");
         deque<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
         deque<int> expect { 6, 7, 8, 9 };
-        deque<int> result = _::filter(data, [](int v) {
+        deque<int> result = underscore::filter(data, [](int v) {
             return v > 5;
         });
         assert(result == expect);
@@ -851,7 +851,7 @@ test_filter() {
         Tracer t("list");
         list<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
         list<int> expect { 6, 7, 8, 9 };
-        list<int> result = _::filter(data, [](int v) {
+        list<int> result = underscore::filter(data, [](int v) {
             return v > 5;
         });
         assert(result == expect);
@@ -861,7 +861,7 @@ test_filter() {
         Tracer t("forward_list");
         forward_list<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
         forward_list<int> expect { 6, 7, 8, 9 };
-        forward_list<int> result = _::filter(data, [](int v) {
+        forward_list<int> result = underscore::filter(data, [](int v) {
             return v > 5;
         });
         assert(result == expect);
@@ -871,7 +871,7 @@ test_filter() {
         Tracer t("set");
         set<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
         set<int> expect { 6, 7, 8, 9 };
-        set<int> result = _::filter(data, [](int v) {
+        set<int> result = underscore::filter(data, [](int v) {
             return v > 5;
         });
         assert(result == expect);
@@ -881,7 +881,7 @@ test_filter() {
         Tracer t("multiset");
         multiset<int> data { 0, 0, 2, 2, 4, 4, 6, 6, 8, 8 };
         multiset<int> expect { 6, 6, 8, 8 };
-        multiset<int> result = _::filter(data, [](int v) {
+        multiset<int> result = underscore::filter(data, [](int v) {
             return v > 5;
         });
         assert(result == expect);
@@ -891,7 +891,7 @@ test_filter() {
         Tracer t("unordered_set");
         unordered_set<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
         unordered_set<int> expect { 6, 7, 8, 9 };
-        unordered_set<int> result = _::filter(data, [](int v) {
+        unordered_set<int> result = underscore::filter(data, [](int v) {
             return v > 5;
         });
         assert(result == expect);
@@ -901,7 +901,7 @@ test_filter() {
         Tracer t("unordered_multiset");
         unordered_multiset<int> data { 0, 0, 2, 2, 4, 4, 6, 6, 8, 8 };
         unordered_multiset<int> expect { 6, 6, 8, 8 };
-        unordered_multiset<int> result = _::filter(data, [](int v) {
+        unordered_multiset<int> result = underscore::filter(data, [](int v) {
             return v > 5;
         });
         assert(result == expect);
@@ -911,7 +911,7 @@ test_filter() {
         Tracer t("map");
         map<int, string> data { {1, "a"}, {2, "b"}, {3, "c"}, {4, "d"}, {10, "x"}, {20, "y"}, {30, "z"} };
         map<int, string> expect { {10, "x"}, {20, "y"}, {30, "z"} };
-        map<int, string> result = _::filter(data, [](const pair<const int, string>& v) {
+        map<int, string> result = underscore::filter(data, [](const pair<const int, string>& v) {
             return v.first >= 10;
         });
         assert(result == expect);
@@ -921,7 +921,7 @@ test_filter() {
         Tracer t("multimap");
         multimap<int, string> data { {2, "a"}, {2, "b"}, {4, "c"}, {4, "d"}, {10, "x"}, {10, "y"} };
         multimap<int, string> expect { {10, "x"}, {10, "y"} };
-        multimap<int, string> result = _::filter(data, [](const pair<const int, string>& v) {
+        multimap<int, string> result = underscore::filter(data, [](const pair<const int, string>& v) {
             return v.first >= 10;
         });
         assert(result == expect);
@@ -931,7 +931,7 @@ test_filter() {
         Tracer t("unordered_map");
         unordered_map<int, string> data { {1, "a"}, {2, "b"}, {3, "c"}, {4, "d"}, {10, "x"}, {20, "y"}, {30, "z"} };
         unordered_map<int, string> expect { {10, "x"}, {20, "y"}, {30, "z"} };
-        unordered_map<int, string> result = _::filter(data, [](const pair<const int, string>& v) {
+        unordered_map<int, string> result = underscore::filter(data, [](const pair<const int, string>& v) {
             return v.first >= 10;
         });
         assert(result == expect);
@@ -941,7 +941,7 @@ test_filter() {
         Tracer t("unordered_multimap");
         unordered_multimap<int, string> data { {2, "a"}, {2, "b"}, {4, "c"}, {4, "d"}, {10, "x"}, {10, "y"} };
         unordered_multimap<int, string> expect { {10, "x"}, {10, "y"} };
-        unordered_multimap<int, string> result = _::filter(data, [](const pair<const int, string>& v) {
+        unordered_multimap<int, string> result = underscore::filter(data, [](const pair<const int, string>& v) {
             return v.first >= 10;
         });
         assert(result == expect);
@@ -964,7 +964,7 @@ test_reject() {
         Tracer t("string");
         string data("hello world!");
         string expect("lloworl");
-        string result = _::reject(data, [](char v) {
+        string result = underscore::reject(data, [](char v) {
             return v <= 'h';
         });
         assert(result == expect);
@@ -974,7 +974,7 @@ test_reject() {
         Tracer t("vector");
         vector<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
         vector<int> expect { 6, 7, 8, 9 };
-        vector<int> result = _::reject(data, [](int v) {
+        vector<int> result = underscore::reject(data, [](int v) {
             return v <= 5;
         });
         assert(result == expect);
@@ -984,7 +984,7 @@ test_reject() {
         Tracer t("deque");
         deque<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
         deque<int> expect { 6, 7, 8, 9 };
-        deque<int> result = _::reject(data, [](int v) {
+        deque<int> result = underscore::reject(data, [](int v) {
             return v <= 5;
         });
         assert(result == expect);
@@ -994,7 +994,7 @@ test_reject() {
         Tracer t("list");
         list<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
         list<int> expect { 6, 7, 8, 9 };
-        list<int> result = _::reject(data, [](int v) {
+        list<int> result = underscore::reject(data, [](int v) {
             return v <= 5;
         });
         assert(result == expect);
@@ -1004,7 +1004,7 @@ test_reject() {
         Tracer t("forward_list");
         forward_list<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
         forward_list<int> expect { 6, 7, 8, 9 };
-        forward_list<int> result = _::reject(data, [](int v) {
+        forward_list<int> result = underscore::reject(data, [](int v) {
             return v <= 5;
         });
         assert(result == expect);
@@ -1014,7 +1014,7 @@ test_reject() {
         Tracer t("set");
         set<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
         set<int> expect { 6, 7, 8, 9 };
-        set<int> result = _::reject(data, [](int v) {
+        set<int> result = underscore::reject(data, [](int v) {
             return v <= 5;
         });
         assert(result == expect);
@@ -1024,7 +1024,7 @@ test_reject() {
         Tracer t("multiset");
         multiset<int> data { 0, 0, 2, 2, 4, 4, 6, 6, 8, 8 };
         multiset<int> expect { 6, 6, 8, 8 };
-        multiset<int> result = _::reject(data, [](int v) {
+        multiset<int> result = underscore::reject(data, [](int v) {
             return v <= 5;
         });
         assert(result == expect);
@@ -1034,7 +1034,7 @@ test_reject() {
         Tracer t("unordered_set");
         unordered_set<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
         unordered_set<int> expect { 6, 7, 8, 9 };
-        unordered_set<int> result = _::reject(data, [](int v) {
+        unordered_set<int> result = underscore::reject(data, [](int v) {
             return v <= 5;
         });
         assert(result == expect);
@@ -1044,7 +1044,7 @@ test_reject() {
         Tracer t("unordered_multiset");
         unordered_multiset<int> data { 0, 0, 2, 2, 4, 4, 6, 6, 8, 8 };
         unordered_multiset<int> expect { 6, 6, 8, 8 };
-        unordered_multiset<int> result = _::reject(data, [](int v) {
+        unordered_multiset<int> result = underscore::reject(data, [](int v) {
             return v <= 5;
         });
         assert(result == expect);
@@ -1054,7 +1054,7 @@ test_reject() {
         Tracer t("map");
         map<int, string> data { {1, "a"}, {2, "b"}, {3, "c"}, {4, "d"}, {10, "x"}, {20, "y"}, {30, "z"} };
         map<int, string> expect { {10, "x"}, {20, "y"}, {30, "z"} };
-        map<int, string> result = _::reject(data, [](const pair<const int, string>& v) {
+        map<int, string> result = underscore::reject(data, [](const pair<const int, string>& v) {
             return v.first < 10;
         });
         assert(result == expect);
@@ -1064,7 +1064,7 @@ test_reject() {
         Tracer t("multimap");
         multimap<int, string> data { {2, "a"}, {2, "b"}, {4, "c"}, {4, "d"}, {10, "x"}, {10, "y"} };
         multimap<int, string> expect { {10, "x"}, {10, "y"} };
-        multimap<int, string> result = _::reject(data, [](const pair<const int, string>& v) {
+        multimap<int, string> result = underscore::reject(data, [](const pair<const int, string>& v) {
             return v.first < 10;
         });
         assert(result == expect);
@@ -1074,7 +1074,7 @@ test_reject() {
         Tracer t("unordered_map");
         unordered_map<int, string> data { {1, "a"}, {2, "b"}, {3, "c"}, {4, "d"}, {10, "x"}, {20, "y"}, {30, "z"} };
         unordered_map<int, string> expect { {10, "x"}, {20, "y"}, {30, "z"} };
-        unordered_map<int, string> result = _::reject(data, [](const pair<const int, string>& v) {
+        unordered_map<int, string> result = underscore::reject(data, [](const pair<const int, string>& v) {
             return v.first < 10;
         });
         assert(result == expect);
@@ -1084,7 +1084,7 @@ test_reject() {
         Tracer t("unordered_multimap");
         unordered_multimap<int, string> data { {2, "a"}, {2, "b"}, {4, "c"}, {4, "d"}, {10, "x"}, {10, "y"} };
         unordered_multimap<int, string> expect { {10, "x"}, {10, "y"} };
-        unordered_multimap<int, string> result = _::reject(data, [](const pair<const int, string>& v) {
+        unordered_multimap<int, string> result = underscore::reject(data, [](const pair<const int, string>& v) {
             return v.first < 10;
         });
         assert(result == expect);
@@ -1098,12 +1098,12 @@ test_every() {
     {
         Tracer t("C-style array");
         int data[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::every(data, [](int v) {
+        auto result = underscore::every(data, [](int v) {
             return v > 0;
         });
         assert(result);
 
-        result = _::every(data, [](int v) {
+        result = underscore::every(data, [](int v) {
             return v > 1;
         });
         assert(!result);
@@ -1112,7 +1112,7 @@ test_every() {
     {
         Tracer t("array");
         array<int, 10> data = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::every(data, [](int v) {
+        auto result = underscore::every(data, [](int v) {
             return v >= 0;
         });
         assert(result);
@@ -1121,7 +1121,7 @@ test_every() {
     {
         Tracer t("string");
         string data("hello world!");
-        auto result = _::every(data, [](char v) {
+        auto result = underscore::every(data, [](char v) {
             return v >= ' ';
         });
         assert(result);
@@ -1130,7 +1130,7 @@ test_every() {
     {
         Tracer t("vector");
         vector<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::every(data, [](int v) {
+        auto result = underscore::every(data, [](int v) {
             return v >= 0;
         });
         assert(result);
@@ -1139,7 +1139,7 @@ test_every() {
     {
         Tracer t("deque");
         deque<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::every(data, [](int v) {
+        auto result = underscore::every(data, [](int v) {
             return v >= 0;
         });
         assert(result);
@@ -1148,7 +1148,7 @@ test_every() {
     {
         Tracer t("list");
         list<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::every(data, [](int v) {
+        auto result = underscore::every(data, [](int v) {
             return v >= 0;
         });
         assert(result);
@@ -1157,7 +1157,7 @@ test_every() {
     {
         Tracer t("forward_list");
         forward_list<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::every(data, [](int v) {
+        auto result = underscore::every(data, [](int v) {
             return v >= 0;
         });
         assert(result);
@@ -1166,7 +1166,7 @@ test_every() {
     {
         Tracer t("set");
         set<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::every(data, [](int v) {
+        auto result = underscore::every(data, [](int v) {
             return v >= 0;
         });
         assert(result);
@@ -1175,7 +1175,7 @@ test_every() {
     {
         Tracer t("multiset");
         multiset<int> data { 0, 0, 2, 2, 4, 4, 6, 6, 8, 8 };
-        auto result = _::every(data, [](int v) {
+        auto result = underscore::every(data, [](int v) {
             return v >= 0;
         });
         assert(result);
@@ -1184,7 +1184,7 @@ test_every() {
     {
         Tracer t("unordered_set");
         unordered_set<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::every(data, [](int v) {
+        auto result = underscore::every(data, [](int v) {
             return v >= 0;
         });
         assert(result);
@@ -1193,7 +1193,7 @@ test_every() {
     {
         Tracer t("unordered_multiset");
         unordered_multiset<int> data { 0, 0, 2, 2, 4, 4, 6, 6, 8, 8 };
-        auto result = _::every(data, [](int v) {
+        auto result = underscore::every(data, [](int v) {
             return v >= 0;
         });
         assert(result);
@@ -1202,7 +1202,7 @@ test_every() {
     {
         Tracer t("map");
         map<int, string> data { {1, "a"}, {2, "b"}, {3, "c"}, {4, "d"}, {10, "x"}, {20, "y"}, {30, "z"} };
-        auto result = _::every(data, [](const pair<const int, string>& v) {
+        auto result = underscore::every(data, [](const pair<const int, string>& v) {
             return v.second >= "a";
         });
         assert(result);
@@ -1211,7 +1211,7 @@ test_every() {
     {
         Tracer t("multimap");
         multimap<int, string> data { {2, "a"}, {2, "b"}, {4, "c"}, {4, "d"}, {10, "x"}, {10, "y"} };
-        auto result = _::every(data, [](const pair<const int, string>& v) {
+        auto result = underscore::every(data, [](const pair<const int, string>& v) {
             return v.second >= "a";
         });
         assert(result);
@@ -1220,7 +1220,7 @@ test_every() {
     {
         Tracer t("unordered_map");
         unordered_map<int, string> data { {1, "a"}, {2, "b"}, {3, "c"}, {4, "d"}, {10, "x"}, {20, "y"}, {30, "z"} };
-        auto result = _::every(data, [](const pair<const int, string>& v) {
+        auto result = underscore::every(data, [](const pair<const int, string>& v) {
             return v.second >= "a";
         });
         assert(result);
@@ -1229,7 +1229,7 @@ test_every() {
     {
         Tracer t("unordered_multimap");
         unordered_multimap<int, string> data { {2, "a"}, {2, "b"}, {4, "c"}, {4, "d"}, {10, "x"}, {10, "y"} };
-        auto result = _::every(data, [](const pair<const int, string>& v) {
+        auto result = underscore::every(data, [](const pair<const int, string>& v) {
             return v.second >= "a";
         });
         assert(result);
@@ -1243,12 +1243,12 @@ test_some() {
     {
         Tracer t("C-style array");
         int data[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::some(data, [](int v) {
+        auto result = underscore::some(data, [](int v) {
             return v > 0;
         });
         assert(result);
 
-        result = _::some(data, [](int v) {
+        result = underscore::some(data, [](int v) {
             return v > 9;
         });
         assert(!result);
@@ -1257,7 +1257,7 @@ test_some() {
     {
         Tracer t("array");
         array<int, 10> data = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::some(data, [](int v) {
+        auto result = underscore::some(data, [](int v) {
             return v > 5;
         });
         assert(result);
@@ -1266,7 +1266,7 @@ test_some() {
     {
         Tracer t("string");
         string data("hello world!");
-        auto result = _::some(data, [](char v) {
+        auto result = underscore::some(data, [](char v) {
             return v == 'w';
         });
         assert(result);
@@ -1275,7 +1275,7 @@ test_some() {
     {
         Tracer t("vector");
         vector<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::some(data, [](int v) {
+        auto result = underscore::some(data, [](int v) {
             return v > 5;
         });
         assert(result);
@@ -1284,7 +1284,7 @@ test_some() {
     {
         Tracer t("deque");
         deque<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::some(data, [](int v) {
+        auto result = underscore::some(data, [](int v) {
             return v > 5;
         });
         assert(result);
@@ -1293,7 +1293,7 @@ test_some() {
     {
         Tracer t("list");
         list<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::some(data, [](int v) {
+        auto result = underscore::some(data, [](int v) {
             return v > 5;
         });
         assert(result);
@@ -1302,7 +1302,7 @@ test_some() {
     {
         Tracer t("forward_list");
         forward_list<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::some(data, [](int v) {
+        auto result = underscore::some(data, [](int v) {
             return v > 5;
         });
         assert(result);
@@ -1311,7 +1311,7 @@ test_some() {
     {
         Tracer t("set");
         set<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::some(data, [](int v) {
+        auto result = underscore::some(data, [](int v) {
             return v > 5;
         });
         assert(result);
@@ -1320,7 +1320,7 @@ test_some() {
     {
         Tracer t("multiset");
         multiset<int> data { 0, 0, 2, 2, 4, 4, 6, 6, 8, 8 };
-        auto result = _::some(data, [](int v) {
+        auto result = underscore::some(data, [](int v) {
             return v > 5;
         });
         assert(result);
@@ -1329,7 +1329,7 @@ test_some() {
     {
         Tracer t("unordered_set");
         unordered_set<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::some(data, [](int v) {
+        auto result = underscore::some(data, [](int v) {
             return v == 5;
         });
         assert(result);
@@ -1338,7 +1338,7 @@ test_some() {
     {
         Tracer t("unordered_multiset");
         unordered_multiset<int> data { 0, 0, 2, 2, 4, 4, 6, 6, 8, 8 };
-        auto result = _::some(data, [](int v) {
+        auto result = underscore::some(data, [](int v) {
             return v == 2;
         });
         assert(result);
@@ -1347,7 +1347,7 @@ test_some() {
     {
         Tracer t("map");
         map<int, string> data { {1, "a"}, {2, "b"}, {3, "c"}, {4, "d"}, {10, "x"}, {20, "y"}, {30, "z"} };
-        auto result = _::some(data, [](const pair<const int, string>& v) {
+        auto result = underscore::some(data, [](const pair<const int, string>& v) {
             return v.second == "x";
         });
         assert(result);
@@ -1356,7 +1356,7 @@ test_some() {
     {
         Tracer t("multimap");
         multimap<int, string> data { {2, "a"}, {2, "b"}, {4, "c"}, {4, "d"}, {10, "x"}, {10, "y"} };
-        auto result = _::some(data, [](const pair<const int, string>& v) {
+        auto result = underscore::some(data, [](const pair<const int, string>& v) {
             return v.second == "x";
         });
         assert(result);
@@ -1365,7 +1365,7 @@ test_some() {
     {
         Tracer t("unordered_map");
         unordered_map<int, string> data { {1, "a"}, {2, "b"}, {3, "c"}, {4, "d"}, {10, "x"}, {20, "y"}, {30, "z"} };
-        auto result = _::some(data, [](const pair<const int, string>& v) {
+        auto result = underscore::some(data, [](const pair<const int, string>& v) {
             return v.second == "x";
         });
         assert(result);
@@ -1374,7 +1374,7 @@ test_some() {
     {
         Tracer t("unordered_multimap");
         unordered_multimap<int, string> data { {2, "a"}, {2, "b"}, {4, "c"}, {4, "d"}, {10, "x"}, {10, "y"} };
-        auto result = _::some(data, [](const pair<const int, string>& v) {
+        auto result = underscore::some(data, [](const pair<const int, string>& v) {
             return v.second == "x";
         });
         assert(result);
@@ -1388,108 +1388,108 @@ test_contains() {
     {
         Tracer t("C-style array");
         int data[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::contains(data, 3);
+        auto result = underscore::contains(data, 3);
         assert(result);
 
-        result = _::contains(data, 0);
+        result = underscore::contains(data, 0);
         assert(!result);
     }
 
     {
         Tracer t("array");
         array<int, 10> data = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::contains(data, 3);
+        auto result = underscore::contains(data, 3);
         assert(result);
     }
 
     {
         Tracer t("string");
         string data("hello world!");
-        auto result = _::contains(data, 'r');
+        auto result = underscore::contains(data, 'r');
         assert(result);
     }
 
     {
         Tracer t("vector");
         vector<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::contains(data, 3);
+        auto result = underscore::contains(data, 3);
         assert(result);
     }
 
     {
         Tracer t("deque");
         deque<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::contains(data, 3);
+        auto result = underscore::contains(data, 3);
         assert(result);
     }
 
     {
         Tracer t("list");
         list<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::contains(data, 3);
+        auto result = underscore::contains(data, 3);
         assert(result);
     }
 
     {
         Tracer t("forward_list");
         forward_list<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::contains(data, 3);
+        auto result = underscore::contains(data, 3);
         assert(result);
     }
 
     {
         Tracer t("set");
         set<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::contains(data, 3);
+        auto result = underscore::contains(data, 3);
         assert(result);
     }
 
     {
         Tracer t("multiset");
         multiset<int> data { 0, 0, 2, 2, 4, 4, 6, 6, 8, 8 };
-        auto result = _::contains(data, 4);
+        auto result = underscore::contains(data, 4);
         assert(result);
     }
 
     {
         Tracer t("unordered_set");
         unordered_set<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::contains(data, 3);
+        auto result = underscore::contains(data, 3);
         assert(result);
     }
 
     {
         Tracer t("unordered_multiset");
         unordered_multiset<int> data { 0, 0, 2, 2, 4, 4, 6, 6, 8, 8 };
-        auto result = _::contains(data, 4);
+        auto result = underscore::contains(data, 4);
         assert(result);
     }
 
     {
         Tracer t("map");
         map<int, string> data { {1, "a"}, {2, "b"}, {3, "c"}, {4, "d"}, {10, "x"}, {20, "y"}, {30, "z"} };
-        auto result = _::contains(data, pair<const int, string>(4, "d"));
+        auto result = underscore::contains(data, pair<const int, string>(4, "d"));
         assert(result);
     }
 
     {
         Tracer t("multimap");
         multimap<int, string> data { {2, "a"}, {2, "b"}, {4, "c"}, {4, "d"}, {10, "x"}, {10, "y"} };
-        auto result = _::contains(data, pair<const int, string>(4, "d"));
+        auto result = underscore::contains(data, pair<const int, string>(4, "d"));
         assert(result);
     }
 
     {
         Tracer t("unordered_map");
         unordered_map<int, string> data { {1, "a"}, {2, "b"}, {3, "c"}, {4, "d"}, {10, "x"}, {20, "y"}, {30, "z"} };
-        auto result = _::contains(data, pair<const int, string>(4, "d"));
+        auto result = underscore::contains(data, pair<const int, string>(4, "d"));
         assert(result);
     }
 
     {
         Tracer t("unordered_multimap");
         unordered_multimap<int, string> data { {2, "a"}, {2, "b"}, {4, "c"}, {4, "d"}, {10, "x"}, {10, "y"} };
-        auto result = _::contains(data, pair<const int, string>(4, "d"));
+        auto result = underscore::contains(data, pair<const int, string>(4, "d"));
         assert(result);
     }
 }
@@ -1501,8 +1501,8 @@ test_invoke() {
     {
         Tracer t("C-style array");
         Data data[10];
-        _::invoke(data, &Data::set, 5);
-        auto result = _::invoke(data, &Data::get);
+        underscore::invoke(data, &Data::set, 5);
+        auto result = underscore::invoke(data, &Data::get);
         for (auto& i : result) {
             assert(i == 5);
         }
@@ -1511,8 +1511,8 @@ test_invoke() {
     {
         Tracer t("array");
         array<Data, 10> data;
-        _::invoke(data, &Data::set, 5);
-        auto result = _::invoke(data, &Data::get);
+        underscore::invoke(data, &Data::set, 5);
+        auto result = underscore::invoke(data, &Data::get);
         for (auto& i : result) {
             assert(i == 5);
         }
@@ -1525,8 +1525,8 @@ test_invoke() {
     {
         Tracer t("vector");
         vector<Data> data(10);
-        _::invoke(data, &Data::set, 5);
-        auto result = _::invoke(data, &Data::get);
+        underscore::invoke(data, &Data::set, 5);
+        auto result = underscore::invoke(data, &Data::get);
         for (auto& i : result) {
             assert(i == 5);
         }
@@ -1535,8 +1535,8 @@ test_invoke() {
     {
         Tracer t("deque");
         deque<Data> data(10);
-        _::invoke(data, &Data::set, 5);
-        auto result = _::invoke<deque>(data, &Data::get);
+        underscore::invoke(data, &Data::set, 5);
+        auto result = underscore::invoke<deque>(data, &Data::get);
         for (auto& i : result) {
             assert(i == 5);
         }
@@ -1545,8 +1545,8 @@ test_invoke() {
     {
         Tracer t("list");
         list<Data> data(10);
-        _::invoke(data, &Data::set, 5);
-        auto result = _::invoke<list>(data, &Data::get);
+        underscore::invoke(data, &Data::set, 5);
+        auto result = underscore::invoke<list>(data, &Data::get);
         for (auto& i : result) {
             assert(i == 5);
         }
@@ -1555,8 +1555,8 @@ test_invoke() {
     {
         Tracer t("forward_list");
         forward_list<Data> data(10);
-        _::invoke(data, &Data::set, 5);
-        auto result = _::invoke<forward_list>(data, &Data::get);
+        underscore::invoke(data, &Data::set, 5);
+        auto result = underscore::invoke<forward_list>(data, &Data::get);
         for (auto& i : result) {
             assert(i == 5);
         }
@@ -1565,7 +1565,7 @@ test_invoke() {
     {
         Tracer t("set");
         set<Data> data { Data(), Data(), Data(), Data() };
-        auto result = _::invoke<set>(data, &Data::get);
+        auto result = underscore::invoke<set>(data, &Data::get);
         for (auto& i : result) {
             assert(i == 0);
         }
@@ -1574,7 +1574,7 @@ test_invoke() {
     {
         Tracer t("multiset");
         multiset<Data> data { Data(1), Data(1), Data(1), Data(1) };
-        auto result = _::invoke<multiset>(data, &Data::get);
+        auto result = underscore::invoke<multiset>(data, &Data::get);
         for (auto& i : result) {
             assert(i == 1);
         }
@@ -1583,7 +1583,7 @@ test_invoke() {
     {
         Tracer t("unordered_set");
         unordered_set<Data> data { Data(2), Data(2), Data(2), Data(2) };
-        auto result = _::invoke<unordered_set>(data, &Data::get);
+        auto result = underscore::invoke<unordered_set>(data, &Data::get);
         for (auto& i : result) {
             assert(i == 2);
         }
@@ -1592,7 +1592,7 @@ test_invoke() {
     {
         Tracer t("unordered_multiset");
         unordered_multiset<Data> data { Data(3), Data(3), Data(3), Data(3) };
-        auto result = _::invoke<unordered_multiset>(data, &Data::get);
+        auto result = underscore::invoke<unordered_multiset>(data, &Data::get);
         for (auto& i : result) {
             assert(i == 3);
         }
@@ -1622,7 +1622,7 @@ test_pluck() {
     {
         Tracer t("C-style array");
         Data data[10];
-        auto result = _::pluck(data, &Data::i_);
+        auto result = underscore::pluck(data, &Data::i_);
         for (auto& i : result) {
             assert(i == 0);
         }
@@ -1631,7 +1631,7 @@ test_pluck() {
     {
         Tracer t("array");
         array<Data, 10> data;
-        auto result = _::pluck(data, &Data::i_);
+        auto result = underscore::pluck(data, &Data::i_);
         for (auto& i : result) {
             assert(i == 0);
         }
@@ -1644,7 +1644,7 @@ test_pluck() {
     {
         Tracer t("vector");
         vector<Data> data(10);
-        auto result = _::pluck(data, &Data::i_);
+        auto result = underscore::pluck(data, &Data::i_);
         for (auto& i : result) {
             assert(i == 0);
         }
@@ -1653,7 +1653,7 @@ test_pluck() {
     {
         Tracer t("deque");
         deque<Data> data(10);
-        auto result = _::pluck<deque>(data, &Data::i_);
+        auto result = underscore::pluck<deque>(data, &Data::i_);
         for (auto& i : result) {
             assert(i == 0);
         }
@@ -1662,7 +1662,7 @@ test_pluck() {
     {
         Tracer t("list");
         list<Data> data(10);
-        auto result = _::pluck<list>(data, &Data::i_);
+        auto result = underscore::pluck<list>(data, &Data::i_);
         for (auto& i : result) {
             assert(i == 0);
         }
@@ -1671,7 +1671,7 @@ test_pluck() {
     {
         Tracer t("forward_list");
         forward_list<Data> data(10);
-        auto result = _::pluck<forward_list>(data, &Data::i_);
+        auto result = underscore::pluck<forward_list>(data, &Data::i_);
         for (auto& i : result) {
             assert(i == 0);
         }
@@ -1680,7 +1680,7 @@ test_pluck() {
     {
         Tracer t("set");
         set<Data> data { Data(), Data(), Data(), Data() };
-        auto result = _::pluck<set>(data, &Data::i_);
+        auto result = underscore::pluck<set>(data, &Data::i_);
         for (auto& i : result) {
             assert(i == 0);
         }
@@ -1689,7 +1689,7 @@ test_pluck() {
     {
         Tracer t("multiset");
         multiset<Data> data { Data(1), Data(1), Data(1), Data(1) };
-        auto result = _::pluck<multiset>(data, &Data::i_);
+        auto result = underscore::pluck<multiset>(data, &Data::i_);
         for (auto& i : result) {
             assert(i == 1);
         }
@@ -1698,7 +1698,7 @@ test_pluck() {
     {
         Tracer t("unordered_set");
         unordered_set<Data> data { Data(2), Data(2), Data(2), Data(2) };
-        auto result = _::pluck<unordered_set>(data, &Data::i_);
+        auto result = underscore::pluck<unordered_set>(data, &Data::i_);
         for (auto& i : result) {
             assert(i == 2);
         }
@@ -1707,7 +1707,7 @@ test_pluck() {
     {
         Tracer t("unordered_multiset");
         unordered_multiset<Data> data { Data(3), Data(3), Data(3), Data(3) };
-        auto result = _::pluck<unordered_multiset>(data, &Data::i_);
+        auto result = underscore::pluck<unordered_multiset>(data, &Data::i_);
         for (auto& i : result) {
             assert(i == 3);
         }
@@ -1737,7 +1737,7 @@ test_max() {
     {
         Tracer t("C-style array");
         Data data[] { Data(1), Data(2), Data(3), Data(4) };
-        Data* result = _::max(data, [](const Data& d) {
+        Data* result = underscore::max(data, [](const Data& d) {
             return d.i_;
         });
         assert(result->get() == 4);
@@ -1746,77 +1746,77 @@ test_max() {
     {
         Tracer t("array");
         array<int, 10> data = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::max(data);
+        auto result = underscore::max(data);
         assert(*result == 9);
     }
 
     {
         Tracer t("string");
         string data("hello world!");
-        auto result = _::max(data);
+        auto result = underscore::max(data);
         assert(*result == 'w');
     }
 
     {
         Tracer t("vector");
         vector<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::max(data);
+        auto result = underscore::max(data);
         assert(*result == 9);
     }
 
     {
         Tracer t("deque");
         deque<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::max(data);
+        auto result = underscore::max(data);
         assert(*result == 9);
     }
 
     {
         Tracer t("list");
         list<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::max(data);
+        auto result = underscore::max(data);
         assert(*result == 9);
     }
 
     {
         Tracer t("forward_list");
         forward_list<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::max(data);
+        auto result = underscore::max(data);
         assert(*result == 9);
     }
 
     {
         Tracer t("set");
         set<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::max(data);
+        auto result = underscore::max(data);
         assert(*result == 9);
     }
 
     {
         Tracer t("multiset");
         multiset<int> data { 0, 0, 2, 2, 4, 4, 6, 6, 8, 8 };
-        auto result = _::max(data);
+        auto result = underscore::max(data);
         assert(*result == 8);
     }
 
     {
         Tracer t("unordered_set");
         unordered_set<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::max(data);
+        auto result = underscore::max(data);
         assert(*result == 9);
     }
 
     {
         Tracer t("unordered_multiset");
         unordered_multiset<int> data { 0, 0, 2, 2, 4, 4, 6, 6, 8, 8 };
-        auto result = _::max(data);
+        auto result = underscore::max(data);
         assert(*result == 8);
     }
 
     {
         Tracer t("map");
         map<int, string> data { {1, "a"}, {2, "b"}, {3, "c"}, {4, "d"}, {10, "x"}, {20, "y"}, {30, "z"} };
-        auto result = _::max(data, [](const pair<const int, string>& v) {
+        auto result = underscore::max(data, [](const pair<const int, string>& v) {
             return v.first;
         });
         assert(result->second == "z");
@@ -1825,7 +1825,7 @@ test_max() {
     {
         Tracer t("multimap");
         multimap<int, string> data { {2, "a"}, {2, "b"}, {4, "c"}, {4, "d"}, {10, "x"}, {10, "y"} };
-        auto result = _::max(data, [](const pair<const int, string>& v) {
+        auto result = underscore::max(data, [](const pair<const int, string>& v) {
             return v.second;
         });
         assert(result->first == 10);
@@ -1834,7 +1834,7 @@ test_max() {
     {
         Tracer t("unordered_map");
         unordered_map<int, string> data { {1, "a"}, {2, "b"}, {3, "c"}, {4, "d"}, {10, "x"}, {20, "y"}, {30, "z"} };
-        auto result = _::max(data, [](const pair<const int, string>& v) {
+        auto result = underscore::max(data, [](const pair<const int, string>& v) {
             return v.first;
         });
         assert(result->second == "z");
@@ -1843,7 +1843,7 @@ test_max() {
     {
         Tracer t("unordered_multimap");
         unordered_multimap<int, string> data { {2, "a"}, {2, "b"}, {4, "c"}, {4, "d"}, {10, "x"}, {10, "y"} };
-        auto result = _::max(data, [](const pair<const int, string>& v) {
+        auto result = underscore::max(data, [](const pair<const int, string>& v) {
             return v.second;
         });
         assert(result->first == 10);
@@ -1857,7 +1857,7 @@ test_min() {
     {
         Tracer t("C-style array");
         Data data[] { Data(1), Data(2), Data(3), Data(4) };
-        Data* result = _::min(data, [](const Data& d) {
+        Data* result = underscore::min(data, [](const Data& d) {
             return d.i_;
         });
         assert(result->get() == 1);
@@ -1866,77 +1866,77 @@ test_min() {
     {
         Tracer t("array");
         array<int, 10> data = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::min(data);
+        auto result = underscore::min(data);
         assert(*result == 0);
     }
 
     {
         Tracer t("string");
         string data("hello world!");
-        auto result = _::min(data);
+        auto result = underscore::min(data);
         assert(*result == ' ');
     }
 
     {
         Tracer t("vector");
         vector<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::min(data);
+        auto result = underscore::min(data);
         assert(*result == 0);
     }
 
     {
         Tracer t("deque");
         deque<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::min(data);
+        auto result = underscore::min(data);
         assert(*result == 0);
     }
 
     {
         Tracer t("list");
         list<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::min(data);
+        auto result = underscore::min(data);
         assert(*result == 0);
     }
 
     {
         Tracer t("forward_list");
         forward_list<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::min(data);
+        auto result = underscore::min(data);
         assert(*result == 0);
     }
 
     {
         Tracer t("set");
         set<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::min(data);
+        auto result = underscore::min(data);
         assert(*result == 0);
     }
 
     {
         Tracer t("multiset");
         multiset<int> data { 0, 0, 2, 2, 4, 4, 6, 6, 8, 8 };
-        auto result = _::min(data);
+        auto result = underscore::min(data);
         assert(*result == 0);
     }
 
     {
         Tracer t("unordered_set");
         unordered_set<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::min(data);
+        auto result = underscore::min(data);
         assert(*result == 0);
     }
 
     {
         Tracer t("unordered_multiset");
         unordered_multiset<int> data { 0, 0, 2, 2, 4, 4, 6, 6, 8, 8 };
-        auto result = _::min(data);
+        auto result = underscore::min(data);
         assert(*result == 0);
     }
 
     {
         Tracer t("map");
         map<int, string> data { {1, "a"}, {2, "b"}, {3, "c"}, {4, "d"}, {10, "x"}, {20, "y"}, {30, "z"} };
-        auto result = _::min(data, [](const pair<const int, string>& v) {
+        auto result = underscore::min(data, [](const pair<const int, string>& v) {
             return v.first;
         });
         assert(result->second == "a");
@@ -1945,7 +1945,7 @@ test_min() {
     {
         Tracer t("multimap");
         multimap<int, string> data { {2, "a"}, {2, "b"}, {4, "c"}, {4, "d"}, {10, "x"}, {10, "y"} };
-        auto result = _::min(data, [](const pair<const int, string>& v) {
+        auto result = underscore::min(data, [](const pair<const int, string>& v) {
             return v.second;
         });
         assert(result->first == 2);
@@ -1954,7 +1954,7 @@ test_min() {
     {
         Tracer t("unordered_map");
         unordered_map<int, string> data { {1, "a"}, {2, "b"}, {3, "c"}, {4, "d"}, {10, "x"}, {20, "y"}, {30, "z"} };
-        auto result = _::min(data, [](const pair<const int, string>& v) {
+        auto result = underscore::min(data, [](const pair<const int, string>& v) {
             return v.first;
         });
         assert(result->second == "a");
@@ -1963,7 +1963,7 @@ test_min() {
     {
         Tracer t("unordered_multimap");
         unordered_multimap<int, string> data { {2, "a"}, {2, "b"}, {4, "c"}, {4, "d"}, {10, "x"}, {10, "y"} };
-        auto result = _::min(data, [](const pair<const int, string>& v) {
+        auto result = underscore::min(data, [](const pair<const int, string>& v) {
             return v.second;
         });
         assert(result->first == 2);
@@ -1982,7 +1982,7 @@ test_sortBy() {
         Tracer t("array");
         array<Data, 6> data   = { Data(4), Data(1), Data(3), Data(2), Data(0), Data(5) };
         array<Data, 6> expect = { Data(0), Data(1), Data(2), Data(3), Data(4), Data(5) };
-        auto result = _::sortBy(data, [](const Data& v) {
+        auto result = underscore::sortBy(data, [](const Data& v) {
             return v.i_;
         });
         assert(result == expect);
@@ -1992,7 +1992,7 @@ test_sortBy() {
         Tracer t("string");
         string data("hello world!");
         string expect(" !dehllloorw");
-        auto result = _::sortBy(data, [](char v) {
+        auto result = underscore::sortBy(data, [](char v) {
             return v;
         });
         assert(result == expect);
@@ -2002,7 +2002,7 @@ test_sortBy() {
         Tracer t("vector");
         vector<int> data   = { 9, 1, 0, 3, 2, 5, 6, 4, 8, 7 };
         vector<int> expect = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::sortBy(data, [](int v) {
+        auto result = underscore::sortBy(data, [](int v) {
             return v;
         });
         assert(result == expect);
@@ -2012,7 +2012,7 @@ test_sortBy() {
         Tracer t("deque");
         deque<int> data   = { 9, 1, 0, 3, 2, 5, 6, 4, 8, 7 };
         deque<int> expect = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::sortBy(data, [](int v) {
+        auto result = underscore::sortBy(data, [](int v) {
             return v;
         });
         assert(result == expect);
@@ -2066,7 +2066,7 @@ test_groupBy() {
     {
         Tracer t("C-style array");
         int data[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::groupBy(data, [](const int& i) {
+        auto result = underscore::groupBy(data, [](const int& i) {
             return i % 2 == 0;
         });
         multimap<bool, int> expect { {false, 1}, {false, 3}, {false, 5}, {false, 7}, {false, 9}, {true, 2}, {true, 4}, {true, 6}, {true, 8} };
@@ -2076,7 +2076,7 @@ test_groupBy() {
     {
         Tracer t("array");
         array<int, 10> data = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::groupBy(data, [](const int& i) {
+        auto result = underscore::groupBy(data, [](const int& i) {
             return i % 2 == 0;
         });
         multimap<bool, int> expect { {false, 1}, {false, 3}, {false, 5}, {false, 7}, {false, 9}, {true, 0}, {true, 2}, {true, 4}, {true, 6}, {true, 8} };
@@ -2086,7 +2086,7 @@ test_groupBy() {
     {
         Tracer t("string");
         string data("Hello World!");
-        auto result = _::groupBy(data, [](char i) {
+        auto result = underscore::groupBy(data, [](char i) {
             return i > 90;
         });
         multimap<bool, char> expect { {false, 'H'}, {false, ' '}, {false, 'W'}, {false, '!'},
@@ -2097,7 +2097,7 @@ test_groupBy() {
     {
         Tracer t("vector");
         vector<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::groupBy(data, [](const int& i) {
+        auto result = underscore::groupBy(data, [](const int& i) {
             return i % 2 == 0;
         });
         multimap<bool, int> expect { {false, 1}, {false, 3}, {false, 5}, {false, 7}, {false, 9}, {true, 0}, {true, 2}, {true, 4}, {true, 6}, {true, 8} };
@@ -2107,7 +2107,7 @@ test_groupBy() {
     {
         Tracer t("deque");
         deque<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::groupBy(data, [](const int& i) {
+        auto result = underscore::groupBy(data, [](const int& i) {
             return i % 2 == 0;
         });
         multimap<bool, int> expect { {false, 1}, {false, 3}, {false, 5}, {false, 7}, {false, 9}, {true, 0}, {true, 2}, {true, 4}, {true, 6}, {true, 8} };
@@ -2117,7 +2117,7 @@ test_groupBy() {
     {
         Tracer t("list");
         list<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::groupBy(data, [](const int& i) {
+        auto result = underscore::groupBy(data, [](const int& i) {
             return i % 2 == 0;
         });
         multimap<bool, int> expect { {false, 1}, {false, 3}, {false, 5}, {false, 7}, {false, 9}, {true, 0}, {true, 2}, {true, 4}, {true, 6}, {true, 8} };
@@ -2127,7 +2127,7 @@ test_groupBy() {
     {
         Tracer t("forward_list");
         forward_list<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::groupBy(data, [](const int& i) {
+        auto result = underscore::groupBy(data, [](const int& i) {
             return i % 2 == 0;
         });
         multimap<bool, int> expect { {false, 1}, {false, 3}, {false, 5}, {false, 7}, {false, 9}, {true, 0}, {true, 2}, {true, 4}, {true, 6}, {true, 8} };
@@ -2137,7 +2137,7 @@ test_groupBy() {
     {
         Tracer t("set");
         set<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::groupBy(data, [](const int& i) {
+        auto result = underscore::groupBy(data, [](const int& i) {
             return i % 2 == 0;
         });
         multimap<bool, int> expect { {false, 1}, {false, 3}, {false, 5}, {false, 7}, {false, 9}, {true, 0}, {true, 2}, {true, 4}, {true, 6}, {true, 8} };
@@ -2147,7 +2147,7 @@ test_groupBy() {
     {
         Tracer t("multiset");
         multiset<int> data { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4 };
-        auto result = _::groupBy(data, [](const int& i) {
+        auto result = underscore::groupBy(data, [](const int& i) {
             return i % 2 == 0;
         });
         multimap<bool, int> expect { {false, 1}, {false, 1}, {false, 3}, {false, 3}, {true, 0}, {true, 0}, {true, 2}, {true, 2}, {true, 4}, {true, 4} };
@@ -2157,7 +2157,7 @@ test_groupBy() {
     {
         Tracer t("unordered_set");
         unordered_set<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::groupBy(data, [](const int& i) {
+        auto result = underscore::groupBy(data, [](const int& i) {
             return i % 2 == 0;
         });
         multimap<bool, int> expect { {false, 9}, {false, 7}, {false, 5}, {false, 3}, {false, 1}, {true, 8}, {true, 6}, {true, 4}, {true, 2}, {true, 0} };
@@ -2167,7 +2167,7 @@ test_groupBy() {
     {
         Tracer t("unordered_multiset");
         unordered_multiset<int> data { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4 };
-        auto result = _::groupBy(data, [](const int& i) {
+        auto result = underscore::groupBy(data, [](const int& i) {
             return i % 2 == 0;
         });
         multimap<bool, int> expect { {false, 3}, {false, 3}, {false, 1}, {false, 1}, {true, 4}, {true, 4}, {true, 2}, {true, 2}, {true, 0}, {true, 0} };
@@ -2177,7 +2177,7 @@ test_groupBy() {
     {
         Tracer t("map");
         map<int, string> data { {1, "a"}, {2, "b"}, {3, "c"}, {4, "d"}, {10, "xx"}, {20, "yy"}, {30, "zz"} };
-        auto result = _::groupBy(data, [](const pair<const int, string>& i) {
+        auto result = underscore::groupBy(data, [](const pair<const int, string>& i) {
             return i.second.size() > 1;
         });
         multimap<bool, pair<const int, string>> expect { {false, {1, "a"}}, {false, {2, "b"}}, {false, {3, "c"}}, {false, {4, "d"}},
@@ -2188,7 +2188,7 @@ test_groupBy() {
     {
         Tracer t("multimap");
         multimap<int, string> data { {1, "a"}, {1, "b"}, {2, "c"}, {2, "d"}, {10, "xx"}, {10, "yy"} };
-        auto result = _::groupBy(data, [](const pair<const int, string>& i) {
+        auto result = underscore::groupBy(data, [](const pair<const int, string>& i) {
             return i.second.size() > 1;
         });
         multimap<bool, pair<const int, string>> expect { {false, {1, "a"}}, {false, {1, "b"}}, {false, {2, "c"}}, {false, {2, "d"}},
@@ -2199,7 +2199,7 @@ test_groupBy() {
     {
         Tracer t("unordered_map");
         unordered_map<int, string> data { {1, "a"}, {2, "b"}, {3, "c"}, {4, "d"}, {10, "xx"}, {20, "yy"}, {30, "zz"} };
-        auto result = _::groupBy(data, [](const pair<const int, string>& i) {
+        auto result = underscore::groupBy(data, [](const pair<const int, string>& i) {
             return i.second.size() > 1;
         });
         multimap<bool, pair<const int, string>> expect { {false, {4, "d"}}, {false, {3, "c"}}, {false, {2, "b"}}, {false, {1, "a"}}, 
@@ -2210,7 +2210,7 @@ test_groupBy() {
     {
         Tracer t("unordered_multimap");
         unordered_multimap<int, string> data { {1, "a"}, {1, "b"}, {2, "c"}, {2, "d"}, {10, "xx"}, {10, "yy"} };
-        auto result = _::groupBy(data, [](const pair<const int, string>& i) {
+        auto result = underscore::groupBy(data, [](const pair<const int, string>& i) {
             return i.second.size() > 1;
         });
         multimap<bool, pair<const int, string>> expect { {false, {2, "c"}}, {false, {2, "d"}}, {false, {1, "a"}}, {false, {1, "b"}}, 
@@ -2226,7 +2226,7 @@ test_countBy() {
     {
         Tracer t("C-style array");
         int data[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::countBy(data, [](const int& i) {
+        auto result = underscore::countBy(data, [](const int& i) {
             return i % 2 == 0 ? "even" : "odd";
         });
         map<const char*, size_t> expect { {"odd", 5}, {"even", 4} };
@@ -2236,7 +2236,7 @@ test_countBy() {
     {
         Tracer t("array");
         array<int, 10> data = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::countBy(data, [](const int& i) {
+        auto result = underscore::countBy(data, [](const int& i) {
             return i % 2 == 0;
         });
         map<bool, size_t> expect { {false, 5}, {true, 5} };
@@ -2246,7 +2246,7 @@ test_countBy() {
     {
         Tracer t("string");
         string data("Hello World!");
-        auto result = _::countBy(data, [](char i) {
+        auto result = underscore::countBy(data, [](char i) {
             return i > 90;
         });
         map<bool, size_t> expect { {false, 4}, {true, 8} };
@@ -2256,7 +2256,7 @@ test_countBy() {
     {
         Tracer t("vector");
         vector<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::countBy(data, [](const int& i) {
+        auto result = underscore::countBy(data, [](const int& i) {
             return i % 2 == 0;
         });
         map<bool, size_t> expect { {false, 5}, {true, 5} };
@@ -2266,7 +2266,7 @@ test_countBy() {
     {
         Tracer t("deque");
         deque<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::countBy(data, [](const int& i) {
+        auto result = underscore::countBy(data, [](const int& i) {
             return i % 2 == 0;
         });
         map<bool, size_t> expect { {false, 5}, {true, 5} };
@@ -2276,7 +2276,7 @@ test_countBy() {
     {
         Tracer t("list");
         list<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::countBy(data, [](const int& i) {
+        auto result = underscore::countBy(data, [](const int& i) {
             return i % 2 == 0;
         });
         map<bool, size_t> expect { {false, 5}, {true, 5} };
@@ -2286,7 +2286,7 @@ test_countBy() {
     {
         Tracer t("forward_list");
         forward_list<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::countBy(data, [](const int& i) {
+        auto result = underscore::countBy(data, [](const int& i) {
             return i % 2 == 0;
         });
         map<bool, size_t> expect { {false, 5}, {true, 5} };
@@ -2296,7 +2296,7 @@ test_countBy() {
     {
         Tracer t("set");
         set<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::countBy(data, [](const int& i) {
+        auto result = underscore::countBy(data, [](const int& i) {
             return i % 2 == 0;
         });
         map<bool, size_t> expect { {false, 5}, {true, 5} };
@@ -2306,7 +2306,7 @@ test_countBy() {
     {
         Tracer t("multiset");
         multiset<int> data { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4 };
-        auto result = _::countBy(data, [](const int& i) {
+        auto result = underscore::countBy(data, [](const int& i) {
             return i % 2 == 0;
         });
         map<bool, size_t> expect { {false, 4}, {true, 6} };
@@ -2316,7 +2316,7 @@ test_countBy() {
     {
         Tracer t("unordered_set");
         unordered_set<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::countBy(data, [](const int& i) {
+        auto result = underscore::countBy(data, [](const int& i) {
             return i % 2 == 0;
         });
         map<bool, size_t> expect { {false, 5}, {true, 5} };
@@ -2326,7 +2326,7 @@ test_countBy() {
     {
         Tracer t("unordered_multiset");
         unordered_multiset<int> data { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4 };
-        auto result = _::countBy(data, [](const int& i) {
+        auto result = underscore::countBy(data, [](const int& i) {
             return i % 2 == 0;
         });
         map<bool, size_t> expect { {false, 4}, {true, 6} };
@@ -2336,7 +2336,7 @@ test_countBy() {
     {
         Tracer t("map");
         map<int, string> data { {1, "a"}, {2, "b"}, {3, "c"}, {4, "d"}, {10, "xx"}, {20, "yy"}, {30, "zz"} };
-        auto result = _::countBy(data, [](const pair<const int, string>& i) {
+        auto result = underscore::countBy(data, [](const pair<const int, string>& i) {
             return i.second.size() > 1;
         });
         map<bool, size_t> expect { {false, 4}, {true, 3} };
@@ -2346,7 +2346,7 @@ test_countBy() {
     {
         Tracer t("multimap");
         multimap<int, string> data { {1, "a"}, {1, "b"}, {2, "c"}, {2, "d"}, {10, "xx"}, {10, "yy"} };
-        auto result = _::countBy(data, [](const pair<const int, string>& i) {
+        auto result = underscore::countBy(data, [](const pair<const int, string>& i) {
             return i.second.size() > 1;
         });
         map<bool, size_t> expect { {false, 4}, {true, 2} };
@@ -2356,7 +2356,7 @@ test_countBy() {
     {
         Tracer t("unordered_map");
         unordered_map<int, string> data { {1, "a"}, {2, "b"}, {3, "c"}, {4, "d"}, {10, "xx"}, {20, "yy"}, {30, "zz"} };
-        auto result = _::countBy(data, [](const pair<const int, string>& i) {
+        auto result = underscore::countBy(data, [](const pair<const int, string>& i) {
             return i.second.size() > 1;
         });
         map<bool, size_t> expect { {false, 4}, {true, 3} };
@@ -2366,7 +2366,7 @@ test_countBy() {
     {
         Tracer t("unordered_multimap");
         unordered_multimap<int, string> data { {1, "a"}, {1, "b"}, {2, "c"}, {2, "d"}, {10, "xx"}, {10, "yy"} };
-        auto result = _::countBy(data, [](const pair<const int, string>& i) {
+        auto result = underscore::countBy(data, [](const pair<const int, string>& i) {
             return i.second.size() > 1;
         });
         map<bool, size_t> expect { {false, 4}, {true, 2} };
@@ -2385,28 +2385,28 @@ test_shuffle() {
     {
         Tracer t("array");
         array<int, 10> data = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::shuffle(data);
+        auto result = underscore::shuffle(data);
         assert(result != data);
     }
 
     {
         Tracer t("string");
         string data("hello world!");
-        string result = _::shuffle(data);
+        string result = underscore::shuffle(data);
         assert(result != data);
     }
 
     {
         Tracer t("vector");
         vector<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        vector<int> result = _::shuffle(data);
+        vector<int> result = underscore::shuffle(data);
         assert(result != data);
     }
 
     {
         Tracer t("deque");
         deque<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        deque<int> result = _::shuffle(data);
+        deque<int> result = underscore::shuffle(data);
         assert(result != data);
     }
 
@@ -2458,7 +2458,7 @@ test_toArray() {
     {
         Tracer t("C-style array");
         int data[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::toArray(data);
+        auto result = underscore::toArray(data);
         vector<int> expect { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
         assert(result == expect);
     }
@@ -2466,7 +2466,7 @@ test_toArray() {
     {
         Tracer t("array");
         array<int, 10> data = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 };
-        auto result = _::toArray<list>(data);
+        auto result = underscore::toArray<list>(data);
         list<int> expect { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 };
         assert(result == expect);
     }
@@ -2474,7 +2474,7 @@ test_toArray() {
     {
         Tracer t("string");
         string data("hello world!");
-        auto result = _::toArray<list>(data);
+        auto result = underscore::toArray<list>(data);
         list<char> expect { 'h', 'e', 'l', 'l', 'o', ' ', 'w', 'o', 'r', 'l', 'd', '!' };
         assert(result == expect);
     }
@@ -2482,7 +2482,7 @@ test_toArray() {
     {
         Tracer t("vector");
         vector<int> data = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::toArray(data);
+        auto result = underscore::toArray(data);
         vector<int> expect { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
         assert(result == expect);
     }
@@ -2490,7 +2490,7 @@ test_toArray() {
     {
         Tracer t("deque");
         deque<int> data = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::toArray<deque>(data);
+        auto result = underscore::toArray<deque>(data);
         deque<int> expect { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
         assert(result == expect);
     }
@@ -2498,7 +2498,7 @@ test_toArray() {
     {
         Tracer t("list");
         list<int> data = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::toArray(data);
+        auto result = underscore::toArray(data);
         vector<int> expect { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
         assert(result == expect);
     }
@@ -2506,7 +2506,7 @@ test_toArray() {
     {
         Tracer t("forward_list");
         forward_list<int> data = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::toArray<list>(data);
+        auto result = underscore::toArray<list>(data);
         list<int> expect { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
         assert(result == expect);
     }
@@ -2514,7 +2514,7 @@ test_toArray() {
     {
         Tracer t("set");
         set<int> data = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::toArray<forward_list>(data);
+        auto result = underscore::toArray<forward_list>(data);
         forward_list<int> expect { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
         assert(result == expect);
     }
@@ -2522,7 +2522,7 @@ test_toArray() {
     {
         Tracer t("multiset");
         multiset<int> data = { 1, 1, 3, 3, 5, 5, 7, 7 };
-        auto result = _::toArray<multiset>(data);
+        auto result = underscore::toArray<multiset>(data);
         multiset<int> expect { 1, 1, 3, 3, 5, 5, 7, 7 };
         assert(result == expect);
     }
@@ -2530,7 +2530,7 @@ test_toArray() {
     {
         Tracer t("unordered_set");
         unordered_set<int> data = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::toArray<set>(data);
+        auto result = underscore::toArray<set>(data);
         set<int> expect { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
         assert(result == expect);
     }
@@ -2538,7 +2538,7 @@ test_toArray() {
     {
         Tracer t("unordered_multiset");
         unordered_multiset<int> data = { 1, 1, 3, 3, 5, 5, 7, 7 };
-        auto result = _::toArray<multiset>(data);
+        auto result = underscore::toArray<multiset>(data);
         multiset<int> expect { 1, 1, 3, 3, 5, 5, 7, 7 };
         assert(result == expect);
     }
@@ -2547,7 +2547,7 @@ test_toArray() {
     {
         Tracer t("map");
         map<int, string> data { {1, "a"}, {2, "b"}, {3, "c"}, {4, "d"}, {10, "x"}, {20, "y"}, {30, "z"} };
-        auto result = _::toArray(data);
+        auto result = underscore::toArray(data);
         vector<pair<const int, string>> expect { {1, "a"}, {2, "b"}, {3, "c"}, {4, "d"}, {10, "x"}, {20, "y"}, {30, "z"} };
         assert(result == expect);
     }
@@ -2555,7 +2555,7 @@ test_toArray() {
     {
         Tracer t("multimap");
         multimap<int, string> data { {2, "a"}, {2, "b"}, {4, "c"}, {4, "d"}, {10, "x"}, {10, "y"} };
-        auto result = _::toArray(data);
+        auto result = underscore::toArray(data);
         vector<pair<const int, string>> expect { {2, "a"}, {2, "b"}, {4, "c"}, {4, "d"}, {10, "x"}, {10, "y"} };
         assert(result == expect);
     }
@@ -2563,7 +2563,7 @@ test_toArray() {
     {
         Tracer t("unordered_map");
         unordered_map<int, string> data { {1, "a"}, {2, "b"}, {3, "c"}, {4, "d"}, {10, "x"}, {20, "y"}, {30, "z"} };
-        auto result = _::toArray<list>(data);
+        auto result = underscore::toArray<list>(data);
         list<pair<const int, string>> expect { {30, "z"}, {20, "y"}, {10, "x"}, {4, "d"}, {3, "c"}, {2, "b"}, {1, "a"} };
         assert(result == expect);
     }
@@ -2571,7 +2571,7 @@ test_toArray() {
     {
         Tracer t("unordered_multimap");
         unordered_multimap<int, string> data { {2, "a"}, {2, "b"}, {4, "c"}, {4, "d"}, {10, "x"}, {10, "y"} };
-        auto result = _::toArray<list>(data);
+        auto result = underscore::toArray<list>(data);
         list<pair<const int, string>> expect { {10, "x"}, {10, "y"}, {4, "c"}, {4, "d"}, {2, "a"}, {2, "b"} };
         assert(result == expect);
     }
@@ -2584,105 +2584,105 @@ test_size() {
     {
         Tracer t("C-style array");
         int data[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::size(data);
+        auto result = underscore::size(data);
         assert(result == 9);
     }
 
     {
         Tracer t("array");
         array<int, 10> data = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::size(data);
+        auto result = underscore::size(data);
         assert(result == 10);
     }
 
     {
         Tracer t("string");
         string data("hello world!");
-        auto result = _::size(data);
+        auto result = underscore::size(data);
         assert(result == 12);
     }
 
     {
         Tracer t("vector");
         vector<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::size(data);
+        auto result = underscore::size(data);
         assert(result == 10);
     }
 
     {
         Tracer t("deque");
         deque<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::size(data);
+        auto result = underscore::size(data);
         assert(result == 10);
     }
 
     {
         Tracer t("list");
         list<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::size(data);
+        auto result = underscore::size(data);
         assert(result == 10);
     }
 
     {
         Tracer t("forward_list");
         forward_list<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::size(data);
+        auto result = underscore::size(data);
         assert(result == 10);
     }
 
     {
         Tracer t("set");
         set<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::size(data);
+        auto result = underscore::size(data);
         assert(result == 10);
     }
 
     {
         Tracer t("multiset");
         multiset<int> data { 0, 0, 2, 2, 4, 4, 6, 6, 8, 8 };
-        auto result = _::size(data);
+        auto result = underscore::size(data);
         assert(result == 10);
     }
 
     {
         Tracer t("unordered_set");
         unordered_set<int> data { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        auto result = _::size(data);
+        auto result = underscore::size(data);
         assert(result == 10);
     }
 
     {
         Tracer t("unordered_multiset");
         unordered_multiset<int> data { 0, 0, 2, 2, 4, 4, 6, 6, 8, 8 };
-        auto result = _::size(data);
+        auto result = underscore::size(data);
         assert(result == 10);
     }
 
     {
         Tracer t("map");
         map<int, string> data { {1, "a"}, {2, "b"}, {3, "c"}, {4, "d"}, {10, "x"}, {20, "y"}, {30, "z"} };
-        auto result = _::size(data);
+        auto result = underscore::size(data);
         assert(result == 7);
     }
 
     {
         Tracer t("multimap");
         multimap<int, string> data { {2, "a"}, {2, "b"}, {4, "c"}, {4, "d"}, {10, "x"}, {10, "y"} };
-        auto result = _::size(data);
+        auto result = underscore::size(data);
         assert(result == 6);
     }
 
     {
         Tracer t("unordered_map");
         unordered_map<int, string> data { {1, "a"}, {2, "b"}, {3, "c"}, {4, "d"}, {10, "x"}, {20, "y"}, {30, "z"} };
-        auto result = _::size(data);
+        auto result = underscore::size(data);
         assert(result == 7);
     }
 
     {
         Tracer t("unordered_multimap");
         unordered_multimap<int, string> data { {2, "a"}, {2, "b"}, {4, "c"}, {4, "d"}, {10, "x"}, {10, "y"} };
-        auto result = _::size(data);
+        auto result = underscore::size(data);
         assert(result == 6);
     }
 }
